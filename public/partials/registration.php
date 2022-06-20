@@ -12,7 +12,12 @@ global $compRegAlerts;
  * @subpackage Comp_Form/public/partials
  */
 ?>
-
+<style>
+    h1.page-title {
+        text-align: center;
+        color: #fff;
+    }
+</style>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="comp_form_wrapper">
   <div class="comp_form_container">
@@ -40,10 +45,10 @@ global $compRegAlerts;
       <div class="form-wrapper">
         <form id="comp__registration_form" method="post" enctype="multipart/form-data">
 
-          <div class="comp_row">
+          <div id="name_row" class="comp_row">
             <div class="col_half">
               <div class="input_field"> <span><i class="fas fa-user-tag"></i></span>
-                <input type="text" required oninvalid="setCustomValidity('You must have to add your first name.')" oninput="setCustomValidity('')" name="comp_first_name" placeholder="first name" value="<?php echo ((isset($_POST['comp_first_name'])) ? $_POST['comp_first_name'] : '') ?>" />
+                <input type="text" required name="comp_first_name" placeholder="first name" value="<?php echo ((isset($_POST['comp_first_name'])) ? $_POST['comp_first_name'] : '') ?>" />
               </div>
             </div>
             <div class="col_half">
@@ -53,6 +58,10 @@ global $compRegAlerts;
             </div>
           </div>
 
+          <div class="input_field noned" id="team_row"> <span><i class="fas fa-graduation-cap"></i></span>
+            <input type="text" name="school_team_name" placeholder="school team name" value="<?php echo ((isset($_POST['school_team_name'])) ? $_POST['school_team_name'] : '') ?>">
+          </div>
+
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="email" required oninvalid="setCustomValidity('You must have to add your email.')" oninput="setCustomValidity('')" name="comp_reg_email" placeholder="Email" value="<?php echo ((isset($_POST['comp_reg_email'])) ? $_POST['comp_reg_email'] : '') ?>" />
           </div>
@@ -60,9 +69,13 @@ global $compRegAlerts;
           <div class="input_field"> <span><i class="fas fa-key"></i></span>
             <input type="password" required oninvalid="setCustomValidity('You must have to add a password.')" oninput="setCustomValidity('')" name="comp_password" placeholder="password" value="<?php echo ((isset($_POST['comp_password'])) ? $_POST['comp_password'] : '') ?>" />
           </div>
+
+          <div class="input_field"> <span><i class="fas fa-key"></i></span>
+            <input type="password" required oninvalid="setCustomValidity('Type your confirm password.')" name="comp_conf_password" placeholder="confirm password"/>
+          </div>
           
           <div class="input_field select_option"> <span><i class="fas fa-users"></i></span>
-            <select name="comp_role">
+            <select id="role_select" name="comp_role">
               <?php $selected = ((isset($_POST['comp_role'])) ? $_POST['comp_role'] : '') ?>
               <option <?php echo (($selected == 'student') ? 'selected': '') ?> value="student">Student</option>
               <option <?php echo (($selected == 'school') ? 'selected': '') ?> value="school">School</option>

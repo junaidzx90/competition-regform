@@ -2,9 +2,12 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+ .site-layout--default .site-content__inner {
+  background: transparent !important;
+}
 .comp_form_wrapper {
   background: #393d58;
-  max-width: 100%;
+  max-width: 400px;
   box-sizing: border-box;
   padding: 25px;
   margin: 8% auto 0;
@@ -299,6 +302,11 @@ input:-webkit-autofill:active  {
 input:-webkit-autofill{
   -webkit-text-fill-color: #fff !important;
 }
+
+.noned{
+  display: none !important;
+}
+
 @-webkit-keyframes check {
   0% {
     height: 0;

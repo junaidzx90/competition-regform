@@ -137,14 +137,6 @@ class Comp_Form_Public {
 					return;
 				}
 
-				$first_name = sanitize_text_field( $_POST['comp_first_name'] );
-				if(empty($first_name)){
-					$compRegAlerts = '<strong>ERROR</strong>: You must have to your first name.';
-					return;
-				}
-				$last_name = sanitize_text_field( $_POST['comp_last_name'] );
-
-				
 				$password = sanitize_text_field( $_POST['comp_password'] );
 				if(empty($password)){
 					$compRegAlerts = '<strong>ERROR</strong>: You must need a password.';
@@ -155,6 +147,22 @@ class Comp_Form_Public {
 				if ( $comp_role === '' ) {
 					$compRegAlerts = '<strong>ERROR</strong>: Please select a role.';
 					return;
+				}
+
+				$first_name = null;
+				$last_name = null;
+				if($comp_role === 'student'){
+					$first_name = sanitize_text_field( $_POST['comp_first_name'] );
+					if(empty($first_name)){
+						$compRegAlerts = '<strong>ERROR</strong>: You must have to your first name.';
+						return;
+					}
+					$last_name = sanitize_text_field( $_POST['comp_last_name'] );
+				}
+
+				$school_team_name = null;
+				if($comp_role === 'school'){
+					$school_team_name = sanitize_text_field($_POST['school_team_name']);
 				}
 
 				$username = explode("@", $email)[0];
@@ -169,11 +177,19 @@ class Comp_Form_Public {
 				$user_id_role = new WP_User($user_id);
 				$user_id_role->set_role($comp_role);
 
-				if ( ! empty( $first_name ) ) {
+				$display_name = null;
+				if($comp_role === 'school'){
+					$display_name = $school_team_name;
+					wp_update_user( array( 'ID' => $user_id, 'display_name' => $school_team_name ) );
+				}else{
+					$display_name = $first_name.' '.$last_name;
 					wp_update_user( array( 'ID' => $user_id, 'display_name' => $first_name.' '.$last_name ) );
+				}
+				
+				if ( ! empty( $display_name ) ) {
 					$profileMeta = [
 						'avatar' => null,
-						'name' => $first_name.' '.$last_name,
+						'name' => $display_name,
 						'userBio' => '....',
 						'school' => '....',
 						'country' => '....',
@@ -234,7 +250,7 @@ class Comp_Form_Public {
 					return;
 				}
 
-				wp_safe_redirect( home_url(  ) );
+				wp_safe_redirect( get_the_permalink( get_option('comp_profile_page') ) );
 				exit;
 			}
 		}

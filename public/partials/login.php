@@ -12,7 +12,12 @@ global $comploginAlerts;
  * @subpackage Comp_Form/public/partials
  */
 ?>
-
+<style>
+    h1.page-title {
+        text-align: center;
+        color: #fff;
+    }
+</style>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="comp_form_wrapper">
     <div class="comp_form_container">
