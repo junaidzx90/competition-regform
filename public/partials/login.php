@@ -13,6 +13,9 @@ global $comploginAlerts;
  */
 ?>
 <style>
+    body {
+      background-image: url("<?php echo get_template_directory_uri() ?>/assets/img/bg-texture-01.jpg") !important;
+    }
     h1.page-title {
         text-align: center;
         color: #fff;

@@ -102,19 +102,6 @@ class Comp_Form_Public {
 
 	}
 
-	function competition_wp_head(){
-		global $post;
-		if(get_comp_page_url_by_shortcode('comp_registration') || get_comp_page_url_by_shortcode('comp_login')){
-			?>
-			<style>
-				body {
-					background-image: url("<?php echo get_template_directory_uri() ?>/assets/img/bg-texture-01.jpg") !important;
-				}
-			</style>
-			<?php
-		}
-	}
-
 	function comp_login_view(){
 		ob_start();
 		require_once plugin_dir_path( __FILE__ )."partials/login.php";
