@@ -16,6 +16,9 @@ global $compRegAlerts;
     body {
       background-image: url("<?php echo get_template_directory_uri() ?>/assets/img/bg-texture-01.jpg") !important;
     }
+    .site-layout--default .site-content__inner {
+        background: transparent !important;
+    }
     h1.page-title {
         text-align: center;
         color: #fff;

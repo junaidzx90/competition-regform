@@ -70,7 +70,7 @@ class Comp_Form {
 		if ( defined( 'COMP_FORM_VERSION' ) ) {
 			$this->version = COMP_FORM_VERSION;
 		} else {
-			$this->version = '1.0.2';
+			$this->version = '1.0.3';
 		}
 		$this->plugin_name = 'comp-form';
 
